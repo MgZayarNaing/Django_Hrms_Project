@@ -1,0 +1,95 @@
+
+{% extends "base.html" %}
+{% block head_block %} {% endblock %}
+{% block body_block %}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <br/>
+    <h1 class="text-center"> Expense Details </h1>
+  
+<br />
+<br />
+
+
+    <form class="mt-5" method="POST" action="/expense/new_expense/" enctype="multipart/form-
+    data">
+        {% csrf_token %}
+        <div class="form-group">
+            <a class="btn btn-dark" href="/expense/show_expense"><i class="fa fa-arrow-left"
+            aria-hidden="true"></i> Back </a>
+            <a class="btn btn-primary" href="/expense/update/{{expense.id}}/"> Update </a>
+            <a class="btn btn-danger" href="/expense/delete/{{expense.id}}/" 
+            onclick="return confirm('Are you sure?');"> Delete </a>
+        </div>
+        <br/>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Name </label>
+                    <div class="col-md-9">
+                        <input type='text' name='name' value='{{ expense.title }}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Value </label>
+                    <div class="col-md-9">
+                        <input type='text' name='sequence' value='{{ expense.date }}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold">  Date </label>
+                    <div class="col-md-9">
+                        <input type='text' name='appointment_date' value='{{ expense.value }}' class="form-control" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <div class="form-row">
+                    <label class="col-md-3 font-weight-bold"> Check Out </label>
+                    <div class="col-md-9">
+                        <input type='text' name='note' value='{{ expense.cash_out }}' class="form-control" readonly/> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        </div>
+    </form>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+{% endblock %}

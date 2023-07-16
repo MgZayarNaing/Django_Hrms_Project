@@ -1,0 +1,45 @@
+windows
+=======
+Step 1 => Extract/unzip the file
+Step 2 => Go inside the project folder, open cmd and type the following commands to install Django Framework and run the webserver:
+Step 3 => python -m venv django2-venv
+Step 4 => .\django2-venv\Scripts\activate
+Step 5 => python -m pip install requirement.txt
+Step 6 => python manage.py runserver
+step 7 => Finally, open the browser localhost:8000/ and go to http://127.0.0.0:8000/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ubuntu 
+======
+Step 1 => Extract/unzip the file
+Step 2 => Go inside the project folder, open cmd and type the following commands to install Django Framework and run the webserver:
+Step 3 => python -m venv venv
+step 4 => source venv/bin/activate
+Step 5 => python3 -m pip install requirement.txt
+Step 6 => python3 manage.py runserver
+step 7 => Finally, open the browser localhost:8000/ and go to http://127.0.0.0:8000/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Database Dependency
+===================
+python3 manage.py migrate
+python3 manage.py makemigrations hr_tags
+python3 manage.py migrate hr_tags
+python3 manage.py makemigrations hr_departments
+python3 manage.py migrate hr_tags
+python3 manage.py makemigrations hr_jobs
+python3 manage.py migrate hr_jobs
+python3 manage.py makemigrations hr_employees
+python3 manage.py migrate hr_employees
+python3 manage.py makemigrations hr_contracts
+python3 manage.py migrate hr_contracts
+python3 manage.py makemigrations hr_recruitments
+python3 manage.py migrate hr_recruitments
+python3 manage.py makemigrations hr_expense
+python3 manage.py migrate hr_expense
+python3 manage.py makemigrations hr_payroll
+python3 manage.py migrate hr_payroll
+python3 manage.py makemigrations hr_account
+python3 manage.py migrate hr_account
+python3 manage.py createsuperuser
+------------------------------------------------------------------------------------------------------------------------------------------------------------------

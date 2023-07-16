@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %} Expense {% endblock %}
+{% block body_block %}
+{% load static %}
+<div class="container">
+	<div>
+		<h2>Expense</h2>
+	</div>
+
+	<div class="float-left">
+		<form class="form-inline">
+		<a class="btn btn-success mr-sm-2" href="/expense/new_expense/">
+		<i class="fa fa-plus" aria-hidden="true"> </i> Create
+		</a>
+		</form>
+	</div>
+
+	<div class="float-right">
+        <form class="form-inline" action="/hr_recruitments/search_by/">    
+            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search">
+            <button class="btn btn-primary btn-lg" type="submit"> <i class="fas fa-search" aria-hidden="true"></i></button>
+        </form>
+    </div>
+
+    
+
+
+	<table class="table table-bordered table-hover">
+		<thead class="thead-light">
+			<tr>
+				<!-- <th scope="col">Options</th> -->
+				<th scope="col">No</th>
+				<th scope="col">Name</th>
+				<th scope="col">Date</th>
+				<th scope="col"> Value</th>
+				<th scope="col"> Check Out</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for expense in expense_list %}
+			<tr class="clickable" onclick="window.location='/expense/detail/{{expense.id}}/'">
+				<!-- <td>
+					<a href="/hr_recruitments/detail/{{resume.id}}/">
+						<img src="{% static 'info_ico.png' %}"/>
+					</a>
+					<a href="/hr_recruitments/delete/{{resume.id}}/">
+						<img src="{% static 'del_ico.png' %}"/>
+					</a>
+					<a href="/hr_recruitments/update/{{resume.id}}/">
+						<img src="{% static 'edit_ico.png' %}"/>
+					</a>
+				</td> -->
+				<td>{{ forloop.counter }}</td>
+				<td>{{ expense.title }}</td>
+				<td>{{ expense.date }}</td>
+				<td>{{ expense.value }}</td>
+				<td>{{ expense.cash_out }}</td>
+			</tr>
+      
+			{% endfor %}
+
+		</tbody>
+	</table>
+	{% if is_paginated %}
+        <div style="display: flex; justify-content: center;">
+            <nav aria-label="Topics pagination" class="mb-4">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                      <li class="page-item">
+                        <!-- <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a> -->
+                        <a class="page-link" href="{% if request.GET.order %} ?order={{request.GET.order}}&page={{page_obj.previous_page_number}} {% else %} ?page={{page_obj.previous_page_number}} {% endif %}">Previous</a>
+                      </li>
+                    {% else %}
+                      <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                      </li>
+                    {% endif %}
+
+                    {% for page_num in paginator.page_range %}
+                      {% if page_obj.number == page_num %}
+                        <li class="page-item active">
+                          <span class="page-link">
+                            {{ page_num }}
+                            <span class="sr-only">(current)</span>
+                          </span>
+                        </li>
+                      {% else %}
+                        <li class="page-item">
+                          <!-- <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a> -->
+                          <a class="page-link" href="{% if request.GET.order %} ?order={{request.GET.order}}&page={{page_num}} {% else %} ?page={{page_num}} {% endif %}">{{ page_num }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                      <li class="page-item">
+                        <!-- <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a> -->
+                        <a class="page-link" href="{% if request.GET.order %} ?order={{request.GET.order}}&page={{page_obj.next_page_number}} {% else %} ?page={{page_obj.next_page_number}} {% endif %}">Next</a>
+                      </li>
+                    {% else %}
+                      <li class="page-item disabled">
+                        <span class="page-link">Next</span>
+                      </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+
+
+	<!-- <div>
+		<p><b>Options:</b></p>
+		<p><img src="{% static 'info_ico.png' %}"/>Resume details</p>
+		<p><img src="{% static 'del_ico.png' %}"/>Delete resume</p>
+		<p><img src="{% static 'edit_ico.png' %}"/>Edit resume</p>
+	</div> -->
+</div>
+{% endblock body_block %}

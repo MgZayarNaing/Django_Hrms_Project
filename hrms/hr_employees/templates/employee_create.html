@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block head_block %} {% endblock %}
+{% block body_block %}
+<div class="container">
+    <br/>
+    <h1 class="float-right"> Create Employee </h1>
+    <br/>
+
+    <form method="POST" action="/hr_employees/new_employee/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+            <input type="submit" value="Create" class="btn btn-primary">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label> Enter Name </label>
+                <input type='text' name='name' placeholder='Your Name' class="form-control" required/> 
+            </div>
+
+            <div class="form-group col-md-6">
+                <label> Enter Age </label>
+                <input type='number' name='age' placeholder='Your Age' class="form-control" required/> 
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label> Enter Birthday </label>
+                <input type='date' name='birthday' class="form-control" required/> 
+            </div>
+
+            <div class="form-group col-md-6"> 
+                <label> Enter Address </label>
+                <input type='text' name='address' class="form-control" placeholder='Your Address' required/> 
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label> Enter Email </label>
+                <input type='email' name='email' placeholder='Your Email' class="form-control"  required/> 
+            </div>
+
+            <div class="form-group col-md-4">
+                <label> Gender </label>
+                <select name="gender" class="form-control">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label> Enter Joining Date </label>
+                <input type='datetime-local' name='joining_date' class="form-control" required/> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label> Is Married </label>
+            <input type='checkbox' name='is_married'/> 
+        </div>
+
+        <div class="form-group">
+            <label> Upload Image </label>
+            <input type='file' name='image' required/>
+        </div>
+
+        <div>
+            <label> Job </label>
+            <select name="job" class="form-control">
+            {% for job in jobs %}
+            <option value="{{ job.id }}">{{ job.name }}</option>
+            {% endfor %}
+            </select>
+            </div>
+            <div>
+            <label> Tags </label>
+            <select multiple name="tags" class="form-control">
+            {% for tag in tags %}
+            <option value="{{ tag.id }}">{{ tag.name }}</option>
+            {% endfor %}
+            </select>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

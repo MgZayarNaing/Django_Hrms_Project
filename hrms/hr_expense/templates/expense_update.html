@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_block %} {% endblock %}
+{% block body_block %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+    <div class="container">
+        <br>
+        <h1 class="text-center">  Expense  Update</h1>
+
+        <form method="POST" action="{% url 'expense_update' pk=expense.pk %}" enctype="multipart/form-data">
+            <div class="text-left">
+                {% csrf_token %}
+                <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+                <input type="submit" value="Update" class="btn-action btn btn-primary btn-large">
+            </div> 
+            {{ form.as_p}}
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block head_block %} {% endblock %}
+{% block body_block %}
+<div class="container">
+    <br/>
+    <h1 class="float-right"> Update Employee </h1>
+    <br/>
+
+    <form method="POST" action="/hr_employees/update/{{employee.id}}/" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+            <input type="submit" value="Update" class="btn btn-primary">
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label> Enter Name </label>
+                <input type='text' name='name' value='{{employee.name}}' placeholder='Your Name' class="form-control" required/> 
+            </div>
+
+            <div class="form-group col-md-6">
+                <label> Enter Age </label>
+                <input type='number' name='age' value='{{employee.age}}' placeholder='Your Age' class="form-control" required/> 
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label> Enter Birthday </label>
+                <input type='date' name='birthday' class="form-control" value='{{employee.birthday}}' required/> 
+            </div>
+
+            <div class="form-group col-md-6">
+                <label> Enter Address </label>
+                <input type='text' name='address' value='{{employee.address}}' placeholder='Your Address' class="form-control" required/> 
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label> Enter Email </label>
+                <input type='email' name='email' value='{{employee.email}}' placeholder='Your Email' class="form-control" required/> 
+            </div>
+
+            <div class="form-group col-md-4">
+                <label> Gender </label>
+                <select name="gender" class="form-control">
+                    <option value="male" {% if employee.gender == 'male' %}selected{% endif %}>
+                    Male</option>
+                    <option value="female" {% if employee.gender == 'female' %}selected{% endif %}>Female</option>
+                    <option value="other" {% if employee.gender == 'other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+
+             <div class="form-group col-md-4">
+                <label> Enter Joining Date </label>
+                <input type='datetime-local' name='joining_date' value='{{employee.joining_date}}' class="form-control" required/> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label> Is Married </label>
+            <input type='checkbox' name='is_married' {% if employee.is_married %}checked{% endif %} /> 
+        </div>
+
+
+        {% if uploaded_image %}
+            <p>File uploaded at: <a href="{{uploaded_image_url}}">{{uploaded_image}}</a></p>
+        {% endif %}
+
+        <div class="form-group">
+            <label> Upload Image </label>
+            <input type='file' name='image' value='{{employee.image}}'/>
+        </div>
+
+        <div>
+            <label> Job </label>
+            <select name="job" class="form-control">
+                {% for job in jobs %}
+                    <option value="{{ job.id }}" >
+                        {% if job.id == employee.job.id %}selected{% endif %}
+                        {{ job.name }}</option>
+                {% endfor %}                                
+            </select>
+        </div>
+
+
+        <div>
+            <label> Tags </label>
+            <select multiple name="tags" class="form-control">
+            {% for tag in tags %}
+            <option value="{{ tag.id }}" >
+                {% if tag in employee.tags.all %}selected{% endif %}
+            {{ tag.name }}</option>
+            {% endfor %}
+            </select>
+        </div>
+        
+    </form>
+</div>
+{% endblock %}

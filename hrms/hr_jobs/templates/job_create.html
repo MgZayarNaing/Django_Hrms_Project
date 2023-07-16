@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block head_block %} Jobs {% endblock %}
+{% block body_block %}
+<div class="container">
+    <br/>
+    <h1 class="float-right"> Create Job </h1>
+    <br/>
+
+    <form method="POST" action="/hr_jobs/new_job/" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+            <input type="submit" value="Create" class="btn btn-primary">
+        </div>
+
+        {{form.as_p}}
+
+    </form>
+</div>
+{% endblock %}

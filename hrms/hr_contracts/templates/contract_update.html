@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Contracts {% endblock %}
+{% block body_block %}
+<div class="container">
+    <br/>
+    <h1 class="float-right"> Update Contract </h1>
+    <br/>
+
+    <form method="POST" action="/hr_contracts/update/{{contract.id}}/" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+            <input type="submit" value="Update" class="btn btn-primary">
+
+        </div>
+
+        {{ form.as_p }}
+    </form>
+</div>
+{% endblock %}
